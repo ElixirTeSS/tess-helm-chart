@@ -1,6 +1,9 @@
 -
 🎉 {{ .Chart.Name }} has been successfully deployed!
 
+🐋 From docker image:
+  {{ .Values.image.repository }}:{{ .Values.image.tag }}
+ 
 🚀 Helm Release:
   {{ .Release.Name }}, for more info :
   $ helm status {{ .Release.Name }}
