@@ -1,0 +1,7 @@
+apiVersion: webservices.cern.ch/v1alpha1
+kind: OidcReturnURI
+metadata:
+  name: {{ include "tess.fullname" . }}-oidc-return-uri
+spec:
+  redirectURI: {{ .Values.app.ssoRedirectUri }}
+
