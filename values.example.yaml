@@ -46,7 +46,7 @@ logs:
 
 redis:
   port: 6379
-  image: redis:6
+  image: redis:7
   requestCPU: 50m
   limitCPU: 100m
   requestMem: 32Mi
