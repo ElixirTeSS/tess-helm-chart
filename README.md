@@ -16,6 +16,7 @@ In order to run TeSS, you need to have the following prerequisites installed.
 - docker
 - oc
 - kubectl
+- helm
 
 These prerequisites are out of scope for this document but you can find more information about them at the following links:
 
@@ -23,6 +24,7 @@ These prerequisites are out of scope for this document but you can find more inf
 - [Docker](https://www.docker.com/)
 - [OpenShift CLI (oc)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.2/html/cli_tools/openshift-cli-oc#cli-getting-started)
 - [kubectl](https://docs.redhat.com/en/documentation/openshift_container_platform/4.2/html/cli_tools/openshift-cli-oc#usage-oc-kubectl)
+- [helm](https://helm.sh/)
 
 ## Chart Structure
 
@@ -43,7 +45,7 @@ There are some modifications to be aware of:
 1. In `.env`, Solr and Redis URL must be labelled with `-service` when deploying through Kubernetes:
 
 ```
-SOLR_URL=<http://solr-service:8983/solr/tess>
+SOLR_URL=http://solr-service:8983/solr/tess
 REDIS_URL=redis://redis-service:6379/1
 REDIS_TEST_URL=redis://redis-service:6379/0
 ```
@@ -78,7 +80,7 @@ Sign in to the Container registry, execute the command below in your terminal, c
 
 Execute the following command in your terminal at the root of your `TeSS` directory, do not forget to change it with your own GitHub username, the name you want to give to your image and change the tag when you re/build it:
 
-    docker build -f Dockerfile . --build-arg CR="True" -t ghcr.io/YOUR_GITHUB_USERNAME/YOUR_IMAGE_NAME:0.1.0 --platform linux/amd64,linux/arm64
+    docker build -f Dockerfile . --build-arg CR="True" -t ghcr.io/YOUR_GITHUB_USERNAME/YOUR_IMAGE_NAME:0.1.0 --platform linux/amd64
 
 To check that your image does not contain any credentials/sensitive information, you can run a `find` command in your image with the following command:
 
@@ -118,6 +120,7 @@ You must change at least three fields:
 - `image.repository` : change it with the image repository and change with your username and repo name
 - `image.tag` : change it with the tag of your image
 - `app.host` : it should be the same as `base_url` in `tess.yml` and without the `https://`
+- `app.ssoRedirectUri` : it should be `https://YOUR_APP.HOST/users/auth/oidc/callback`
 
 ### Configure `Chart.yaml`
 
