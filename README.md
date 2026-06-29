@@ -78,9 +78,9 @@ Sign in to the Container registry, execute the command below in your terminal, c
 
 ⚠️ Make sure to have the same `.env`, `tess.yml` and `secrets.yml` in both your TeSS and TeSS-Helm-chart directories.
 
-Execute the following command in your terminal at the root of your `TeSS` directory, do not forget to change it with your own GitHub username, the name you want to give to your image and change the tag when you re/build it (if you are not on an arm64 machine, remove the `,linux/arm64` on the next command):
+Execute the following command in your terminal at the root of your `TeSS` directory, do not forget to change it with your own GitHub username, the name you want to give to your image and change the tag when you re/build it (if you are on an arm64 machine, replace `linux/amd64` by `linux/arm64` on the next command):
 
-    docker build -f Dockerfile . --build-arg CR="True" -t ghcr.io/YOUR_GITHUB_USERNAME/YOUR_IMAGE_NAME:0.1.0 --platform linux/amd64,linux/arm64
+    docker build -f Dockerfile . --build-arg CR="True" -t ghcr.io/YOUR_GITHUB_USERNAME/YOUR_IMAGE_NAME:0.1.0 --platform linux/amd64
 
 To check that your image does not contain any credentials/sensitive information, you can run a `find` command in your image with the following command:
 
