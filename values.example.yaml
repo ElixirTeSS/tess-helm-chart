@@ -6,7 +6,7 @@ image:
 
 app:
   host: localhost
-  # ssoRedirectUri: https://your-website.com/users/auth/oidc/callback
+  ssoRedirectUri: null
   port: 3000
   requestCPU: 500m
   limitCPU: 800m
